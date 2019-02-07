@@ -9,7 +9,7 @@
 def selects_the_titles_of_all_projects_and_their_pledge_amounts_alphabetized_by_name
 "SELECT projects.title, SUM(pledges.amount)
 FROM projects INNER JOIN pledges
-WHERE projects.id = pledges.project_id
+ON projects.id = pledges.project_id
 GROUP BY projects.title
 ORDER BY projects.title"
 end
@@ -27,13 +27,13 @@ def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_
 FROM projects JOIN pledges
 WHERE projects.id = pledges.project_id
 GROUP BY projects.title
-HAVING  difference >= 0"
+HAVING difference >= 0"
 end
 
 def selects_user_names_and_amounts_of_all_pledges_grouped_by_name_then_orders_them_by_the_amount_and_users_name
 "SELECT users.name, SUM(pledges.amount ) AS pledge
 FROM users JOIN pledges
-WHERE users.id = pledges.user_id
+ON users.id = pledges.user_id
 GROUP BY users.name
 ORDER BY pledge"
 end
